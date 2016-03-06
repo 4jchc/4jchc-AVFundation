@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="_1_录音" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +16,76 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="kfU-oO-Mkn">
+                                <rect key="frame" x="142" y="285" width="317" height="30"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="X2Q-jo-PnT">
+                                        <rect key="frame" x="49" y="0.0" width="220" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avu-O1-Rvi">
+                                                <rect key="frame" x="0.0" y="0.0" width="60" height="30"/>
+                                                <color key="backgroundColor" red="0.47831180670000001" green="0.94807346199999998" blue="0.25509472599999999" alpha="0.61516702590000005" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="开始录音"/>
+                                                <connections>
+                                                    <action selector="downAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4Al-gL-ue0"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lti-mW-Us8">
+                                                <rect key="frame" x="80" y="0.0" width="60" height="30"/>
+                                                <color key="backgroundColor" red="0.47831180670000001" green="0.94807346199999998" blue="0.25509472599999999" alpha="0.61516702590000005" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="停止录音"/>
+                                                <connections>
+                                                    <action selector="upAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0Bd-iZ-y9D"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XSK-RF-sK2">
+                                                <rect key="frame" x="160" y="0.0" width="60" height="30"/>
+                                                <color key="backgroundColor" red="0.47831180670000001" green="0.94807346199999998" blue="0.25509472599999999" alpha="0.61516702586206895" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="播放录音"/>
+                                                <connections>
+                                                    <action selector="playAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0wn-Mi-RMa"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.94154158659999998" green="0.26528185040000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" red="1" green="0.075982618850000003" blue="0.06571433132" alpha="1" colorSpace="calibratedRGB"/>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.72257444370000001" green="0.47893448360000002" blue="0.063621080649999995" alpha="1" colorSpace="calibratedRGB"/>
+                            </stackView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入录音的名字例如:妈咪" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xm1-VW-gqJ">
+                                <rect key="frame" x="204" y="201" width="194" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEB-ey-lgL">
+                                <rect key="frame" x="142" y="249" width="317" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.17560016789999999" blue="0.84803050026442961" alpha="0.13642241379310344" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="zEB-ey-lgL" firstAttribute="width" secondItem="kfU-oO-Mkn" secondAttribute="width" id="1Uf-eD-3ap"/>
+                            <constraint firstItem="kfU-oO-Mkn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3cu-hi-ghY"/>
+                            <constraint firstItem="kfU-oO-Mkn" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="7uf-LH-Tjl"/>
+                            <constraint firstItem="xm1-VW-gqJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="0.5" id="IHz-wh-flC"/>
+                            <constraint firstItem="zEB-ey-lgL" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-40.5" id="ONU-jn-Obw"/>
+                            <constraint firstItem="xm1-VW-gqJ" firstAttribute="width" secondItem="kfU-oO-Mkn" secondAttribute="width" constant="-123" id="ZY8-Ae-dEr"/>
+                            <constraint firstItem="zEB-ey-lgL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eic-dp-NGA"/>
+                            <constraint firstItem="xm1-VW-gqJ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-84" id="xSM-xn-pko"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="vidoName" destination="xm1-VW-gqJ" id="4Tg-eB-jyw"/>
+                        <outlet property="volumLab" destination="zEB-ey-lgL" id="c7s-A7-hdg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="238" y="337"/>
         </scene>
     </scenes>
 </document>
