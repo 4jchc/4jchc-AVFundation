@@ -14,6 +14,7 @@
 		96BD128F1C8C06A6005E4C39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96BD128D1C8C06A6005E4C39 /* LaunchScreen.storyboard */; };
 		96BD129A1C8C06A6005E4C39 /* _1___Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BD12991C8C06A6005E4C39 /* _1___Tests.swift */; };
 		96BD12A51C8C06A6005E4C39 /* _1___UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BD12A41C8C06A6005E4C39 /* _1___UITests.swift */; };
+		96BD12B41C8C4A71005E4C39 /* XMGAudioTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BD12B31C8C4A71005E4C39 /* XMGAudioTool.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		96BD12A01C8C06A6005E4C39 /* 01-录音UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "01-录音UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96BD12A41C8C06A6005E4C39 /* _1___UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "_1___UITests.swift"; sourceTree = "<group>"; };
 		96BD12A61C8C06A6005E4C39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96BD12B31C8C4A71005E4C39 /* XMGAudioTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMGAudioTool.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		96BD12831C8C06A6005E4C39 /* 01-录音 */ = {
 			isa = PBXGroup;
 			children = (
+				96BD12B21C8C4A46005E4C39 /* 播放音效 */,
 				96BD12841C8C06A6005E4C39 /* AppDelegate.swift */,
 				96BD12861C8C06A6005E4C39 /* ViewController.swift */,
 				96BD12881C8C06A6005E4C39 /* Main.storyboard */,
@@ -123,6 +126,14 @@
 				96BD12A61C8C06A6005E4C39 /* Info.plist */,
 			);
 			path = "01-录音UITests";
+			sourceTree = "<group>";
+		};
+		96BD12B21C8C4A46005E4C39 /* 播放音效 */ = {
+			isa = PBXGroup;
+			children = (
+				96BD12B31C8C4A71005E4C39 /* XMGAudioTool.swift */,
+			);
+			path = "播放音效";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96BD12871C8C06A6005E4C39 /* ViewController.swift in Sources */,
+				96BD12B41C8C4A71005E4C39 /* XMGAudioTool.swift in Sources */,
 				96BD12851C8C06A6005E4C39 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -484,6 +496,7 @@
 				96BD12AB1C8C06A6005E4C39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		96BD12AC1C8C06A6005E4C39 /* Build configuration list for PBXNativeTarget "01-录音Tests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +505,7 @@
 				96BD12AE1C8C06A6005E4C39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		96BD12AF1C8C06A6005E4C39 /* Build configuration list for PBXNativeTarget "01-录音UITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +514,7 @@
 				96BD12B11C8C06A6005E4C39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
