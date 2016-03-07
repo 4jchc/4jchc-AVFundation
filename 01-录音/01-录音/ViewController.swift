@@ -33,6 +33,24 @@ class ViewController: UIViewController {
 
         //组合录音文件路径
         //aacPath = docDir + "/play.aac"
+        
+        /*
+        设置录制音频的质量
+        
+        // 创建录音配置信息的字典
+        NSMutableDictionary *setting = [NSMutableDictionary dictionary];
+        // 音频格式
+        setting[AVFormatIDKey] = @(kAudioFormatAppleIMA4);
+        // 录音采样率(Hz) 如：AVSampleRateKey==8000/44100/96000（影响音频的质量）
+        setting[AVSampleRateKey] = @(8000.0);
+        // 音频通道数 1 或 2
+        setting[AVNumberOfChannelsKey] = @(1);
+        // 线性音频的位深度  8、16、24、32
+        setting[AVLinearPCMBitDepthKey] = @(8);
+        //录音的质量
+        setting[AVEncoderAudioQualityKey] = [NSNumber numberWithInt:AVAudioQualityHigh];
+        
+        */
         //初始化字典并添加设置参数
         recorderSeetingsDic =
             [

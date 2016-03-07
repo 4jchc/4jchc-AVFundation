@@ -12,7 +12,7 @@ class XMGAudioTool: NSObject {
     
     static var  playSongs = NSMutableDictionary()
     static var soundIDs:NSMutableDictionary = NSMutableDictionary()
-
+    
     class var userList: NSMutableDictionary {
         struct Static {
             static let instance: NSMutableDictionary = NSMutableDictionary()
@@ -38,9 +38,13 @@ class XMGAudioTool: NSObject {
             soundID = UInt32(soundI)
             
         }else{
- 
-            let url:NSURL = NSBundle.mainBundle().URLForResource(soundname, withExtension: nil)!
-            let urlRef:CFURLRef = url as CFURLRef
+            
+            let url = NSBundle.mainBundle().URLForResource(soundname, withExtension: nil)
+            if url == nil{
+                
+                return
+            }
+            let urlRef:CFURLRef = url as! CFURLRef
             
             AudioServicesCreateSystemSoundID(urlRef, &soundID);
             // 将soundID存入字典
@@ -55,7 +59,7 @@ class XMGAudioTool: NSObject {
     
     //MARK: -  音乐播放
     // 播放音乐 musicName : 音乐的名称
-   static func playMusicWithMusicName(musicName:String)->AVAudioPlayer{
+    static func playMusicWithMusicName(musicName:String)->AVAudioPlayer{
         
         var audioPlayer:AVAudioPlayer?
         audioPlayer = playSongs[musicName] as? AVAudioPlayer
@@ -80,18 +84,18 @@ class XMGAudioTool: NSObject {
     }
     
     // 暂停音乐 musicName : 音乐的名称
-   static func pauseMusicWithMusicName(musicName:String){
+    static func pauseMusicWithMusicName(musicName:String){
         
-    let player = playSongs[musicName];
-    
-    if (player != nil) {
-        player?.pause()
-    }
-    
+        let player = playSongs[musicName];
+        
+        if (player != nil) {
+            player?.pause()
+        }
+        
     }
     
     // 停止音乐 musicName : 音乐的名称
-   static func stopMusicWithMusicName(musicName:String){
+    static func stopMusicWithMusicName(musicName:String){
         
         var player = playSongs[musicName];
         if (player != nil) {
