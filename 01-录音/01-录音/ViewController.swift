@@ -123,6 +123,17 @@ class ViewController: UIViewController {
         volumLab.text = "录音音量:\(lowPassResult)"
     }
     
+    
+    
+    
+    
+    @IBAction func playSound(sender: AnyObject) {
+        
+        XMGAudioTool.playSoundWithSoundname("m_03.wav")
+    }
+    
+    
+    
 }
 
 

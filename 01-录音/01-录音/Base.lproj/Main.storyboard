@@ -65,12 +65,21 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="djS-gW-J97">
+                                <rect key="frame" x="270" y="338" width="60" height="30"/>
+                                <state key="normal" title="播放音效"/>
+                                <connections>
+                                    <action selector="playSound:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AR0-m4-UKy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.17560016789999999" blue="0.84803050026442961" alpha="0.13642241379310344" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="zEB-ey-lgL" firstAttribute="width" secondItem="kfU-oO-Mkn" secondAttribute="width" id="1Uf-eD-3ap"/>
                             <constraint firstItem="kfU-oO-Mkn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3cu-hi-ghY"/>
                             <constraint firstItem="kfU-oO-Mkn" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="7uf-LH-Tjl"/>
+                            <constraint firstItem="djS-gW-J97" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="53" id="9UX-ZQ-8dX"/>
+                            <constraint firstItem="djS-gW-J97" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="CN0-B7-soN"/>
                             <constraint firstItem="xm1-VW-gqJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="0.5" id="IHz-wh-flC"/>
                             <constraint firstItem="zEB-ey-lgL" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-40.5" id="ONU-jn-Obw"/>
                             <constraint firstItem="xm1-VW-gqJ" firstAttribute="width" secondItem="kfU-oO-Mkn" secondAttribute="width" constant="-123" id="ZY8-Ae-dEr"/>

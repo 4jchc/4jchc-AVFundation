@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		960C26D11C8D60D200E0CB99 /* m_03.wav in Resources */ = {isa = PBXBuildFile; fileRef = 960C26D01C8D60D200E0CB99 /* m_03.wav */; };
 		96BD12851C8C06A6005E4C39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BD12841C8C06A6005E4C39 /* AppDelegate.swift */; };
 		96BD12871C8C06A6005E4C39 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BD12861C8C06A6005E4C39 /* ViewController.swift */; };
 		96BD128A1C8C06A6005E4C39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96BD12881C8C06A6005E4C39 /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		960C26D01C8D60D200E0CB99 /* m_03.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = m_03.wav; sourceTree = "<group>"; };
 		96BD12811C8C06A6005E4C39 /* 01-录音.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "01-录音.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96BD12841C8C06A6005E4C39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96BD12861C8C06A6005E4C39 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 		96BD12B21C8C4A46005E4C39 /* 播放音效 */ = {
 			isa = PBXGroup;
 			children = (
+				960C26D01C8D60D200E0CB99 /* m_03.wav */,
 				96BD12B31C8C4A71005E4C39 /* XMGAudioTool.swift */,
 			);
 			path = "播放音效";
@@ -243,6 +246,7 @@
 				96BD128F1C8C06A6005E4C39 /* LaunchScreen.storyboard in Resources */,
 				96BD128C1C8C06A6005E4C39 /* Assets.xcassets in Resources */,
 				96BD128A1C8C06A6005E4C39 /* Main.storyboard in Resources */,
+				960C26D11C8D60D200E0CB99 /* m_03.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
