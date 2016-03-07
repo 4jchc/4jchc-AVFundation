@@ -1,9 +1,9 @@
 //
 //  ViewController.swift
-//  02-音乐播放
+//  4.2baiduMusic
 //
-//  Created by 蒋进 on 16/3/7.
-//  Copyright © 2016年 蒋进. All rights reserved.
+//  Created by 蒋进 on 15/11/25.
+//  Copyright © 2015年 sijichcai. All rights reserved.
 //
 
 import UIKit

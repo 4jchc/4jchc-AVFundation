@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  02-音乐播放
+//  4.2baiduMusic
 //
-//  Created by 蒋进 on 16/3/7.
-//  Copyright © 2016年 蒋进. All rights reserved.
+//  Created by 蒋进 on 15/11/25.
+//  Copyright © 2015年 sijichcai. All rights reserved.
 //
 
 import UIKit
@@ -12,10 +12,15 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var identifiTask: UIBackgroundTaskIdentifier?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        // 开启后台任务
+         self.identifiTask  = application.beginBackgroundTaskWithExpirationHandler { () -> Void in
+            application.endBackgroundTask(self.identifiTask!)
+        }
+        
         return true
     }
 
