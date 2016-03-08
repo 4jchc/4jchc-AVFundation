@@ -66,6 +66,9 @@
 		960C27A21C8DB6A400E0CB99 /* Colours.m in Sources */ = {isa = PBXBuildFile; fileRef = 960C277E1C8DB6A400E0CB99 /* Colours.m */; };
 		960C27AE1C8DB6A400E0CB99 /* HMAudioTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960C27981C8DB6A400E0CB99 /* HMAudioTool.swift */; };
 		960C27AF1C8DB6A400E0CB99 /* HMMusicsTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960C27991C8DB6A400E0CB99 /* HMMusicsTool.swift */; };
+		961F2A111C8EAF51002399B5 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F2A101C8EAF51002399B5 /* UIColor+Extension.swift */; };
+		961F2A151C8EE4F7002399B5 /* CALayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F2A141C8EE4F7002399B5 /* CALayer+Extension.swift */; };
+		961F2A171C8F02DC002399B5 /* XMGLrcView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F2A161C8F02DC002399B5 /* XMGLrcView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +159,9 @@
 		960C277E1C8DB6A400E0CB99 /* Colours.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Colours.m; sourceTree = "<group>"; };
 		960C27981C8DB6A400E0CB99 /* HMAudioTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMAudioTool.swift; sourceTree = "<group>"; };
 		960C27991C8DB6A400E0CB99 /* HMMusicsTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMMusicsTool.swift; sourceTree = "<group>"; };
+		961F2A101C8EAF51002399B5 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		961F2A141C8EE4F7002399B5 /* CALayer+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+Extension.swift"; sourceTree = "<group>"; };
+		961F2A161C8F02DC002399B5 /* XMGLrcView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMGLrcView.swift; sourceTree = "<group>"; };
 		A42A34832CEEAC0EE1282BDA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -319,8 +325,8 @@
 			children = (
 				960C276E1C8DB6A400E0CB99 /* Contoller */,
 				960C27721C8DB6A400E0CB99 /* Model */,
-				960C27741C8DB6A400E0CB99 /* Other */,
 				960C279A1C8DB6A400E0CB99 /* VIew */,
+				960C27741C8DB6A400E0CB99 /* Other */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -368,6 +374,8 @@
 		960C277B1C8DB6A400E0CB99 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				961F2A141C8EE4F7002399B5 /* CALayer+Extension.swift */,
+				961F2A101C8EAF51002399B5 /* UIColor+Extension.swift */,
 				960C277C1C8DB6A400E0CB99 /* Colours */,
 			);
 			path = Libs;
@@ -394,6 +402,7 @@
 		960C279A1C8DB6A400E0CB99 /* VIew */ = {
 			isa = PBXGroup;
 			children = (
+				961F2A161C8F02DC002399B5 /* XMGLrcView.swift */,
 			);
 			path = VIew;
 			sourceTree = "<group>";
@@ -642,6 +651,7 @@
 				960C27AF1C8DB6A400E0CB99 /* HMMusicsTool.swift in Sources */,
 				960C27AE1C8DB6A400E0CB99 /* HMAudioTool.swift in Sources */,
 				960C279C1C8DB6A400E0CB99 /* HMPlayingViewController.swift in Sources */,
+				961F2A111C8EAF51002399B5 /* UIColor+Extension.swift in Sources */,
 				960C27691C8DB67E00E0CB99 /* ViewController.swift in Sources */,
 				960C27A01C8DB6A400E0CB99 /* UIImageTool.swift in Sources */,
 				960C279B1C8DB6A400E0CB99 /* HMMusicsViewController.swift in Sources */,
@@ -649,7 +659,9 @@
 				960C279E1C8DB6A400E0CB99 /* HMMusic.swift in Sources */,
 				960C27A11C8DB6A400E0CB99 /* UIView+Extension.m in Sources */,
 				960C27A21C8DB6A400E0CB99 /* Colours.m in Sources */,
+				961F2A171C8F02DC002399B5 /* XMGLrcView.swift in Sources */,
 				960C279F1C8DB6A400E0CB99 /* UIImage+NJ.m in Sources */,
+				961F2A151C8EE4F7002399B5 /* CALayer+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
