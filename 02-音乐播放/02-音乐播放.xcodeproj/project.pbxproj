@@ -69,6 +69,10 @@
 		961F2A111C8EAF51002399B5 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F2A101C8EAF51002399B5 /* UIColor+Extension.swift */; };
 		961F2A151C8EE4F7002399B5 /* CALayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F2A141C8EE4F7002399B5 /* CALayer+Extension.swift */; };
 		961F2A171C8F02DC002399B5 /* XMGLrcView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F2A161C8F02DC002399B5 /* XMGLrcView.swift */; };
+		961F2A191C8F1159002399B5 /* XMGLrcCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F2A181C8F1159002399B5 /* XMGLrcCell.swift */; };
+		961F2A1B1C8F11DB002399B5 /* XMGLrcLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F2A1A1C8F11DB002399B5 /* XMGLrcLabel.swift */; };
+		961F2A1D1C8F1663002399B5 /* XMGLrcTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F2A1C1C8F1663002399B5 /* XMGLrcTool.swift */; };
+		961F2A1F1C8F1973002399B5 /* XMGLrcline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F2A1E1C8F1973002399B5 /* XMGLrcline.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,7 +156,7 @@
 		960C27731C8DB6A400E0CB99 /* HMMusic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMMusic.swift; sourceTree = "<group>"; };
 		960C27761C8DB6A400E0CB99 /* UIImage+NJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+NJ.h"; sourceTree = "<group>"; };
 		960C27771C8DB6A400E0CB99 /* UIImage+NJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+NJ.m"; sourceTree = "<group>"; };
-		960C27781C8DB6A400E0CB99 /* UIImageTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageTool.swift; sourceTree = "<group>"; };
+		960C27781C8DB6A400E0CB99 /* UIImageTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImageTool.swift; path = ../Category/UIImageTool.swift; sourceTree = "<group>"; };
 		960C27791C8DB6A400E0CB99 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		960C277A1C8DB6A400E0CB99 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		960C277D1C8DB6A400E0CB99 /* Colours.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Colours.h; sourceTree = "<group>"; };
@@ -162,6 +166,10 @@
 		961F2A101C8EAF51002399B5 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		961F2A141C8EE4F7002399B5 /* CALayer+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+Extension.swift"; sourceTree = "<group>"; };
 		961F2A161C8F02DC002399B5 /* XMGLrcView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMGLrcView.swift; sourceTree = "<group>"; };
+		961F2A181C8F1159002399B5 /* XMGLrcCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMGLrcCell.swift; sourceTree = "<group>"; };
+		961F2A1A1C8F11DB002399B5 /* XMGLrcLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMGLrcLabel.swift; sourceTree = "<group>"; };
+		961F2A1C1C8F1663002399B5 /* XMGLrcTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMGLrcTool.swift; sourceTree = "<group>"; };
+		961F2A1E1C8F1973002399B5 /* XMGLrcline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMGLrcline.swift; sourceTree = "<group>"; };
 		A42A34832CEEAC0EE1282BDA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -345,6 +353,7 @@
 			isa = PBXGroup;
 			children = (
 				960C27731C8DB6A400E0CB99 /* HMMusic.swift */,
+				961F2A1E1C8F1973002399B5 /* XMGLrcline.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -364,7 +373,6 @@
 			children = (
 				960C27761C8DB6A400E0CB99 /* UIImage+NJ.h */,
 				960C27771C8DB6A400E0CB99 /* UIImage+NJ.m */,
-				960C27781C8DB6A400E0CB99 /* UIImageTool.swift */,
 				960C27791C8DB6A400E0CB99 /* UIView+Extension.h */,
 				960C277A1C8DB6A400E0CB99 /* UIView+Extension.m */,
 			);
@@ -374,6 +382,7 @@
 		960C277B1C8DB6A400E0CB99 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				960C27781C8DB6A400E0CB99 /* UIImageTool.swift */,
 				961F2A141C8EE4F7002399B5 /* CALayer+Extension.swift */,
 				961F2A101C8EAF51002399B5 /* UIColor+Extension.swift */,
 				960C277C1C8DB6A400E0CB99 /* Colours */,
@@ -395,6 +404,7 @@
 			children = (
 				960C27981C8DB6A400E0CB99 /* HMAudioTool.swift */,
 				960C27991C8DB6A400E0CB99 /* HMMusicsTool.swift */,
+				961F2A1C1C8F1663002399B5 /* XMGLrcTool.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -403,6 +413,8 @@
 			isa = PBXGroup;
 			children = (
 				961F2A161C8F02DC002399B5 /* XMGLrcView.swift */,
+				961F2A181C8F1159002399B5 /* XMGLrcCell.swift */,
+				961F2A1A1C8F11DB002399B5 /* XMGLrcLabel.swift */,
 			);
 			path = VIew;
 			sourceTree = "<group>";
@@ -651,11 +663,15 @@
 				960C27AF1C8DB6A400E0CB99 /* HMMusicsTool.swift in Sources */,
 				960C27AE1C8DB6A400E0CB99 /* HMAudioTool.swift in Sources */,
 				960C279C1C8DB6A400E0CB99 /* HMPlayingViewController.swift in Sources */,
+				961F2A1D1C8F1663002399B5 /* XMGLrcTool.swift in Sources */,
 				961F2A111C8EAF51002399B5 /* UIColor+Extension.swift in Sources */,
 				960C27691C8DB67E00E0CB99 /* ViewController.swift in Sources */,
 				960C27A01C8DB6A400E0CB99 /* UIImageTool.swift in Sources */,
 				960C279B1C8DB6A400E0CB99 /* HMMusicsViewController.swift in Sources */,
+				961F2A1F1C8F1973002399B5 /* XMGLrcline.swift in Sources */,
+				961F2A191C8F1159002399B5 /* XMGLrcCell.swift in Sources */,
 				960C27681C8DB67E00E0CB99 /* AppDelegate.swift in Sources */,
+				961F2A1B1C8F11DB002399B5 /* XMGLrcLabel.swift in Sources */,
 				960C279E1C8DB6A400E0CB99 /* HMMusic.swift in Sources */,
 				960C27A11C8DB6A400E0CB99 /* UIView+Extension.m in Sources */,
 				960C27A21C8DB6A400E0CB99 /* Colours.m in Sources */,
