@@ -32,7 +32,6 @@ class HMMusicsViewController: UITableViewController {
 
     }
 
-
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows[[HMMusicsTool musics] count];
         return (HMMusicsTool.musics?.count)!

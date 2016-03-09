@@ -35,7 +35,7 @@ extension NSString {
     }
     
     class func timeStringWithString(timeString: NSString) ->Double {
-        print("歌词时间:\(timeString)")
+
         let min = timeString.componentsSeparatedByString(":")[0].doubleValue
         let second = timeString.substringWithRange(NSMakeRange(3, 2)).doubleValue
         let haomiao = timeString.componentsSeparatedByString(".")[1].doubleValue

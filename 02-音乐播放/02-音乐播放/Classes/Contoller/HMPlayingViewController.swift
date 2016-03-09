@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import Masonry
 
-class HMPlayingViewController: UIViewController,AVAudioPlayerDelegate,UIScrollViewDelegate {
+class HMPlayingViewController: UIViewController {
     
     
     /// 播放暂停按钮
@@ -34,7 +34,7 @@ class HMPlayingViewController: UIViewController,AVAudioPlayerDelegate,UIScrollVi
     @IBOutlet weak var lrcView: XMGLrcView!
     // 歌词的Label
     @IBOutlet weak var lrcLabel: XMGLrcLabel!
-
+    
     
     //   获取进度定时器
     var progressTimer:NSTimer?
@@ -50,7 +50,7 @@ class HMPlayingViewController: UIViewController,AVAudioPlayerDelegate,UIScrollVi
     @IBAction func showlrcView(sender: AnyObject) {
         
         weak var weakSelf = self
-
+        
         if isShowlrcView == false{
             
             UIView.animateWithDuration(0.5, animations: { () -> Void in
@@ -59,23 +59,23 @@ class HMPlayingViewController: UIViewController,AVAudioPlayerDelegate,UIScrollVi
                     // 1.获取到滑动多少
                     weakSelf.lrcView.contentOffset.x = weakSelf.lrcView.bounds.size.width
                 }
-
+                
             })
-
+            
             isShowlrcView = true
         }else{
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 if let weakSelf = weakSelf {
                     weakSelf.lrcView.contentOffset.x = 0
                 }
-              
+                
             })
             
             isShowlrcView = false
             
         }
-
-
+        
+        
     }
     
     //MARK:  监听进度条的点击
@@ -191,7 +191,7 @@ class HMPlayingViewController: UIViewController,AVAudioPlayerDelegate,UIScrollVi
         
         
     }
-
+    
     /// 添加歌词的定时器
     private func addLrcTimer() {
         self.lrcTimer = CADisplayLink(target: self, selector: "updateLrc")
@@ -206,8 +206,8 @@ class HMPlayingViewController: UIViewController,AVAudioPlayerDelegate,UIScrollVi
     @objc private func updateLrc() {
         self.lrcView.currentTime = player.currentTime;
     }
-
-
+    
+    
     
     
     //MARK:  退出
@@ -444,7 +444,7 @@ class HMPlayingViewController: UIViewController,AVAudioPlayerDelegate,UIScrollVi
     
     //MARK: -  重置数据
     func resetplayingMusics() {
-
+        
         // 0.判断是否切换歌曲
         if (self.playingMusic != HMMusicsTool.playingMusicing()){
             
@@ -506,9 +506,9 @@ class HMPlayingViewController: UIViewController,AVAudioPlayerDelegate,UIScrollVi
         
         // 6.添加定时器用户更新进度界面
         self.addProgressTimer()
-
+        
         addLrcTimer()
-
+        
         
     }
     
@@ -544,17 +544,77 @@ class HMPlayingViewController: UIViewController,AVAudioPlayerDelegate,UIScrollVi
         
     }
 
+    //监听远程事件
+//    override func remoteControlReceivedWithEvent(event: UIEvent?) {
+//       // if (event!.type == .RemoteControl){
+//            
+//            switch(event!.subtype) {
+//            case .RemoteControlPause,.RemoteControlPlay:
+//                playOrPause()
+//            case .RemoteControlNextTrack:
+//                next()
+//            case .RemoteControlPreviousTrack:
+//                previous()
+//            default:
+//                break
+//            }
+//
+//    }
+
+    override func remoteControlReceivedWithEvent(event: UIEvent?) {
+        super.remoteControlReceivedWithEvent(event)
+                    switch(event!.subtype) {
+                    case .RemoteControlPause,.RemoteControlPlay:
+                        playOrPause()
+                    case .RemoteControlNextTrack:
+                        next()
+                    case .RemoteControlPreviousTrack:
+                        previous()
+                    default:
+                        break
+                    }
+        
+    }
+
+    /*
+    override func viewDidDisappear(animated: Bool) {
+    super.viewDidDisappear(animated)
+    UIApplication.sharedApplication().endReceivingRemoteControlEvents()
+    }
+    */
+
     
+}
+//MARK: - UIScrollViewDelegate代理
+extension HMPlayingViewController:UIScrollViewDelegate {
     
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        // 1.获取到滑动多少
+        let point:CGPoint = scrollView.contentOffset
+        // 2.计算滑动的比例
+        let ratio:CGFloat = 1 - point.x / scrollView.bounds.size.width;
+        if ratio == 0{
+            isShowlrcView=true
+        }else{
+            isShowlrcView=false
+        }
+        // 3.设置iconView和歌词的Label的透明度
+        self.iconView.alpha = ratio;
+        self.lrcLabel.alpha = ratio;
+    }
     
-    //MARK: - AVAudioPlayerDelegate
+}
+//MARK: - AVAudioplayer的代理方法
+extension HMPlayingViewController :AVAudioPlayerDelegate{
+    
     // 播放结束时调用
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
         // 下一曲
-        self.next()
+        if (flag) {
+            self.next()
+            
+        }
     }
-    
-    
     // 播放器被打断时调用(例如电话)
     func audioPlayerBeginInterruption(player: AVAudioPlayer) {
         // 暂停
@@ -573,39 +633,4 @@ class HMPlayingViewController: UIViewController,AVAudioPlayerDelegate,UIScrollVi
         }
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        // 1.获取到滑动多少
-        let point:CGPoint = scrollView.contentOffset
-        // 2.计算滑动的比例
-        let ratio:CGFloat = 1 - point.x / scrollView.bounds.size.width;
-        if ratio == 0{
-            isShowlrcView=true
-        }else{
-            isShowlrcView=false
-        }
-        // 3.设置iconView和歌词的Label的透明度
-        self.iconView.alpha = ratio;
-        self.lrcLabel.alpha = ratio;
-    }
-
-    
 }
-////MARK: - 实现UIScrollView的代理方法
-//extension HMPlayingViewController :UIScrollViewDelegate{
-//
-//    func scrollViewDidScroll(scrollView: UIScrollView) {
-//        // 1.获取到滑动多少
-//        let point:CGPoint = scrollView.contentOffset
-//        // 2.计算滑动的比例
-//        let ratio:CGFloat = 1 - point.x / scrollView.bounds.size.width;
-//        if ratio == 0{
-//            isShowlrcView=true
-//        }
-//        // 3.设置iconView和歌词的Label的透明度
-//        self.iconView.alpha = ratio;
-//        self.lrcLabel.alpha = ratio;
-//    }
-//
-//
-//    
-//}

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import AVFoundation
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -16,14 +16,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        // 开启后台任务
-         self.identifiTask  = application.beginBackgroundTaskWithExpirationHandler { () -> Void in
-            application.endBackgroundTask(self.identifiTask!)
+//        // 开启后台任务
+//         self.identifiTask  = application.beginBackgroundTaskWithExpirationHandler { () -> Void in
+//            application.endBackgroundTask(self.identifiTask!)
+//        }
+//        
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "audioSessionInterrupted:", name: AVAudioSessionInterruptionNotification, object: AVAudioSession.sharedInstance())
+        // 1.获取音频回话
+        let session:AVAudioSession = AVAudioSession.sharedInstance()
+
+
+        do{
+            // 2.设置后台播放类别
+            try session.setCategory(AVAudioSessionCategoryPlayback)
+            // 3.激活回话
+            try session.setActive(true)
+            
+        }catch{
+            
+            
+            print(error)
+            
         }
-        
         return true
     }
-
+    
+    
+    //MARK: - Notifications
+    func audioSessionInterrupted(notification:NSNotification)
+    {
+        print("interruption received: \(notification)")
+    }
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

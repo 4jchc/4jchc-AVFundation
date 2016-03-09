@@ -8,6 +8,8 @@
 
 import UIKit
 import Masonry
+import AVFoundation
+import MediaPlayer
 class XMGLrcView: UIScrollView{
 
     /** 当前播放的歌词的下标 */
@@ -82,12 +84,11 @@ class XMGLrcView: UIScrollView{
                     // 4.显示对应句的歌词
                     tableView!.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
                     // 5.设置外面歌词的Label的显示歌词
-                    print("外面歌词的Label的显示歌词\(currentLrcLine?.text)")
                     self.lrcLabel.text = currentLrcLine?.text;
                     
                     // 6.生成锁屏界面的图片
-                    
-                    //[self generatorLockImage];
+                    generatorLockImage()
+  
                 }
                 // 4.根据进度,显示label画多少
                 if (self.currentIndex == i) {
@@ -138,13 +139,14 @@ class XMGLrcView: UIScrollView{
     }
     
     
+    
 }
 
 
 extension XMGLrcView :UITableViewDataSource{
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("lrclist\(lrclist?.count)")
+
        return self.lrclist?.count ?? 0
     }
     
@@ -173,8 +175,103 @@ extension XMGLrcView :UITableViewDataSource{
     }
 }
 
+//MARK: - 生成锁屏界面的图片
+extension XMGLrcView {
+    
+    /// generator生成LockImage
+    func generatorLockImage(){
+        
+        // 1.拿到当前歌曲的图片
+        
+        //获取到当前播放歌曲的图片
+        let playingMusic = HMMusicsTool.playingMusicing()
+        let currentImage = UIImage(named: playingMusic.icon!)
+        
+        //获取到当前歌词以及前一句和后一句歌词
+        // 2.拿到三句歌词
+        // 2.1.获取当前的歌词
+        let currentLrc = self.lrclist![self.currentIndex] as! XMGLrcline
+        // 2.2.上一句歌词
+        let previousIndex = self.currentIndex - 1;
+        var prevousLrc: XMGLrcline?
+        if previousIndex >= 0 {
+            prevousLrc = self.lrclist![previousIndex] as? XMGLrcline
+        }
+        // 2.3.下一句歌词
+        let nextIndex  = self.currentIndex + 1;
+        var nextLrc: XMGLrcline?
+        if nextIndex < lrclist!.count {
+            nextLrc = lrclist![nextIndex] as? XMGLrcline
+        }
+        
+        // 3.生成水印图片
+        // 3.1.获取上下文
+        UIGraphicsBeginImageContext(currentImage!.size);
+        
+        // 3.2.将图片画上去
+        currentImage?.drawInRect(CGRectMake(0, 0, currentImage!.size.width, currentImage!.size.height))
+ 
+        // 3.3.将歌词画到图片上
+        let titleH:CGFloat = 25;
+        let style:NSMutableParagraphStyle = NSMutableParagraphStyle()
+        style.alignment = NSTextAlignment.Center;
+        
+        var attributes1 = [String:AnyObject]()
+        attributes1[NSForegroundColorAttributeName] = UIColor.lightGrayColor()
+        attributes1[NSFontAttributeName] = UIFont.systemFontOfSize(14)
+        attributes1[NSParagraphStyleAttributeName] = style
+        
+        (prevousLrc!.text! as NSString).drawInRect(CGRectMake(0, currentImage!.size.height - titleH * 3, currentImage!.size.width, titleH), withAttributes: attributes1)
+        
+        (nextLrc!.text! as NSString).drawInRect(CGRectMake(0, currentImage!.size.height - titleH, currentImage!.size.width, titleH), withAttributes: attributes1)
+        
+        var attributes2 = [String:AnyObject]()
+        attributes2[NSForegroundColorAttributeName] = UIColor.whiteColor()
+        attributes2[NSFontAttributeName] = UIFont.systemFontOfSize(16)
+        attributes2[NSParagraphStyleAttributeName] = style
+        
+        (currentLrc.text! as NSString).drawInRect(CGRectMake(0, currentImage!.size.height - titleH * 2, currentImage!.size.width, titleH), withAttributes: attributes2)
 
+        
+        // 4.生成图片
+        let lockImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        // 5.设置锁屏信息
+        setupLockScreenInfoWithLockImage(lockImage)
+        // 6.关闭
+        UIGraphicsEndImageContext();
+    }
 
+    func setupLockScreenInfoWithLockImage(lockImage:UIImage){
+        
+        // 0.获取当前正在播放的歌曲
+        let playingMusic = HMMusicsTool.playingMusicing()
+        // 1.获取锁屏界面中心
+        let playingInfoCenter = MPNowPlayingInfoCenter.defaultCenter()
+
+        // 2.设置展示的信息
+        let artWork:MPMediaItemArtwork = MPMediaItemArtwork(image: lockImage)
+        let playingInfo:NSDictionary = [
+            MPMediaItemPropertyAlbumTitle: playingMusic.name!,
+            MPMediaItemPropertyAlbumArtist: playingMusic.singer!,
+            MPMediaItemPropertyArtwork: artWork,
+            MPMediaItemPropertyPlaybackDuration: duration!,
+            MPNowPlayingInfoPropertyElapsedPlaybackTime: self.currentTime!
+        ]
+        
+        
+        playingInfoCenter.nowPlayingInfo = playingInfo as? [String : AnyObject];
+        
+        // 3.让应用程序可以接受远程事件
+        //接受远程事件
+        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+        becomeFirstResponder()
+    }
+
+    override func canBecomeFirstResponder() -> Bool {
+        return true
+    }
+    
+}
 
 
 
