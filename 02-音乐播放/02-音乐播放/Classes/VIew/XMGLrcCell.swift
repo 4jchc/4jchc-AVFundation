@@ -25,7 +25,7 @@ class XMGLrcCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         let lrcLabel:XMGLrcLabel = XMGLrcLabel()
-        lrcLabel.textColor = UIColor.whiteColor()
+        lrcLabel.textColor = UIColor.greenColor()
         lrcLabel.font = UIFont.systemFontOfSize(14)
         lrcLabel.textAlignment = NSTextAlignment.Center;
         self.contentView.addSubview(lrcLabel)
@@ -43,11 +43,10 @@ class XMGLrcCell: UITableViewCell {
         }
 
     }
-    func lrcCellWithTableView(tableView:UITableView)->XMGLrcCell{
+   static func lrcCellWithTableView(tableView:UITableView)->XMGLrcCell{
         
         let ID:String = "LrcCell"
         var cell = tableView.dequeueReusableCellWithIdentifier(ID) as? XMGLrcCell
-        
         if cell == nil {
             cell = XMGLrcCell(style: UITableViewCellStyle.Default, reuseIdentifier: ID)
             cell!.backgroundColor = UIColor.clearColor()

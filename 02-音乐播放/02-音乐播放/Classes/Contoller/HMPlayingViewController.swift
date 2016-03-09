@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import Masonry
 
-class HMPlayingViewController: UIViewController,AVAudioPlayerDelegate {
+class HMPlayingViewController: UIViewController,AVAudioPlayerDelegate,UIScrollViewDelegate {
     
     
     /// 播放暂停按钮
@@ -32,18 +32,51 @@ class HMPlayingViewController: UIViewController,AVAudioPlayerDelegate {
     @IBOutlet weak var currentTimeView: UIButton!
     // 歌词的View
     @IBOutlet weak var lrcView: XMGLrcView!
-    
     // 歌词的Label
-    @IBOutlet weak var lrcLabel: UILabel!
+    @IBOutlet weak var lrcLabel: XMGLrcLabel!
 
     
-    //MARK:  获取进度定时器
+    //   获取进度定时器
     var progressTimer:NSTimer?
-    //MARK:  当前正在播放的音乐
+    //   当前正在播放的音乐
     var playingMusic:HMMusic?
-    //MARK:  当前播放器
+    ///  当前播放器
     var player:AVAudioPlayer!
     
+    /** 歌词更新的定时器 */
+    var lrcTimer:CADisplayLink?
+    /// 记录当前是否是
+    var isShowlrcView: Bool = false
+    @IBAction func showlrcView(sender: AnyObject) {
+        
+        weak var weakSelf = self
+
+        if isShowlrcView == false{
+            
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                
+                if let weakSelf = weakSelf {
+                    // 1.获取到滑动多少
+                    weakSelf.lrcView.contentOffset.x = weakSelf.lrcView.bounds.size.width
+                }
+
+            })
+
+            isShowlrcView = true
+        }else{
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                if let weakSelf = weakSelf {
+                    weakSelf.lrcView.contentOffset.x = 0
+                }
+              
+            })
+            
+            isShowlrcView = false
+            
+        }
+
+
+    }
     
     //MARK:  监听进度条的点击
     @IBAction func onProgressBgTap(sender: UIGestureRecognizer) {
@@ -130,14 +163,15 @@ class HMPlayingViewController: UIViewController,AVAudioPlayerDelegate {
         }
         
     }
+    //MARK: - 对定时器的操作
     
-    //MARK:  移除定时器
+    ///  移除定时器
     func removeProgressTimer(){
         
         self.progressTimer?.invalidate()
         self.progressTimer = nil;
     }
-    //MARK: 开启定时器
+    /// 开启定时器
     func addProgressTimer(){
         
         // 1.判断是否正在播放音乐
@@ -157,30 +191,43 @@ class HMPlayingViewController: UIViewController,AVAudioPlayerDelegate {
         
         
     }
+
+    /// 添加歌词的定时器
+    private func addLrcTimer() {
+        self.lrcTimer = CADisplayLink(target: self, selector: "updateLrc")
+        self.lrcTimer?.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
+    }
+    /// 删除歌词的定时器
+    private func removeLrcTimer() {
+        self.lrcTimer?.invalidate()
+        self.lrcTimer = nil
+    }
+    /// 更新歌词的时间
+    @objc private func updateLrc() {
+        self.lrcView.currentTime = player.currentTime;
+    }
+
+
+    
     
     //MARK:  退出
     @IBAction func exitBtnClick(sender: AnyObject) {
         
         // 停止定时器
-        
         self.removeProgressTimer()
         
         // 1. 拿到Window
-        
         let window: UIWindow  = UIApplication.sharedApplication().keyWindow!;
         // 禁用交互功能
         window.userInteractionEnabled = true
         
         // 2.执行退出动画
-        
         UIView.animateWithDuration(1, animations: { () -> Void in
             // 执行动画
             self.view.frame.origin.y = window.bounds.size.height;
             }) { (finished) -> Void in
-                
                 // 隐藏控制器的view
                 self.view.hidden = true
-                
                 // 开启交互
                 window.userInteractionEnabled = true
         }
@@ -292,7 +339,10 @@ class HMPlayingViewController: UIViewController,AVAudioPlayerDelegate {
         startAnimation()
         
         // 4.设置lrcView的ContentSize
+        self.lrcView.delegate = self
         self.lrcView.contentSize = CGSizeMake(self.view.bounds.size.width * 2, 0);
+        self.lrcView.lrcLabel = self.lrcLabel;
+        
         
     }
     override func viewDidLayoutSubviews() {
@@ -394,12 +444,13 @@ class HMPlayingViewController: UIViewController,AVAudioPlayerDelegate {
     
     //MARK: -  重置数据
     func resetplayingMusics() {
-        
+
         // 0.判断是否切换歌曲
         if (self.playingMusic != HMMusicsTool.playingMusicing()){
             
             // 停止定时器
             self.removeProgressTimer()
+            removeLrcTimer()
             // 背景大图
             self.albumView?.image = UIImage(named: "play_cover_pic_bg")
             self.iconView?.image = UIImage(named: "play_cover_pic_bg")
@@ -407,7 +458,6 @@ class HMPlayingViewController: UIViewController,AVAudioPlayerDelegate {
             self.singerLabel?.text = nil
             // 歌曲名称
             self.songLabel?.text = nil
-            self.removeProgressTimer()
             HMAudioTool.stopMusicWithFilename(playingMusic?.filename)
         }
         
@@ -419,9 +469,6 @@ class HMPlayingViewController: UIViewController,AVAudioPlayerDelegate {
     func startplayingMusics(){
         
         resetplayingMusics()
-        
-        // 停止定时器
-        self.removeProgressTimer()
         // 执行动画完毕, 开始播放音乐
         // 1.取出当前正在播放的音乐模型
         let music = HMMusicsTool.playingMusicing()
@@ -433,6 +480,7 @@ class HMPlayingViewController: UIViewController,AVAudioPlayerDelegate {
             NSLog("仅开启定时器");
             // 4.开始获取进度
             self.addProgressTimer()
+            addLrcTimer()
             return
         }
         
@@ -449,8 +497,19 @@ class HMPlayingViewController: UIViewController,AVAudioPlayerDelegate {
         // 设置总时长
         self.durationLabel!.text = self.strWithTimeInterval(self.player.duration)
         
-        // 4.开始获取进度
+        // 4.设置歌词
+        self.lrcView.lrcName = playingMusic!.lrcname
+        //刚开始 外界歌词label清空
+        self.lrcLabel.text = "";
+        self.lrcView.duration = self.player.duration
+        
+        
+        // 6.添加定时器用户更新进度界面
         self.addProgressTimer()
+
+        addLrcTimer()
+
+        
     }
     
     
@@ -484,12 +543,7 @@ class HMPlayingViewController: UIViewController,AVAudioPlayerDelegate {
         self.slider.setTitle(self.strWithTimeInterval(self.player.currentTime), forState: UIControlState.Normal)
         
     }
-    
-    
-    
-    
-    
-    
+
     
     
     
@@ -519,23 +573,39 @@ class HMPlayingViewController: UIViewController,AVAudioPlayerDelegate {
         }
     }
     
-    
-    
-}
-//MARK: - 实现UIScrollView的代理方法
-extension HMPlayingViewController :UIScrollViewDelegate{
-    
     func scrollViewDidScroll(scrollView: UIScrollView) {
         // 1.获取到滑动多少
         let point:CGPoint = scrollView.contentOffset
         // 2.计算滑动的比例
         let ratio:CGFloat = 1 - point.x / scrollView.bounds.size.width;
-
+        if ratio == 0{
+            isShowlrcView=true
+        }else{
+            isShowlrcView=false
+        }
         // 3.设置iconView和歌词的Label的透明度
         self.iconView.alpha = ratio;
         self.lrcLabel.alpha = ratio;
     }
 
-
     
 }
+////MARK: - 实现UIScrollView的代理方法
+//extension HMPlayingViewController :UIScrollViewDelegate{
+//
+//    func scrollViewDidScroll(scrollView: UIScrollView) {
+//        // 1.获取到滑动多少
+//        let point:CGPoint = scrollView.contentOffset
+//        // 2.计算滑动的比例
+//        let ratio:CGFloat = 1 - point.x / scrollView.bounds.size.width;
+//        if ratio == 0{
+//            isShowlrcView=true
+//        }
+//        // 3.设置iconView和歌词的Label的透明度
+//        self.iconView.alpha = ratio;
+//        self.lrcLabel.alpha = ratio;
+//    }
+//
+//
+//    
+//}

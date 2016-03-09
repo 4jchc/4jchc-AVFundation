@@ -34,17 +34,22 @@ extension NSString {
         return String(format: "%02.f:%02.f",min,seconde)
     }
     
-    class func timeStringWithString(timeString: NSString) ->NSTimeInterval {
-        
-        let min = Double(timeString.componentsSeparatedByString(":")[0])
-        let second = Double(timeString.substringWithRange(NSMakeRange(3, 2)))
-        let haomiao = Double(timeString.componentsSeparatedByString(".")[1])
-        return (min! * 60 + second! + haomiao! * 0.01)
+    class func timeStringWithString(timeString: NSString) ->Double {
+        print("歌词时间:\(timeString)")
+        let min = timeString.componentsSeparatedByString(":")[0].doubleValue
+        let second = timeString.substringWithRange(NSMakeRange(3, 2)).doubleValue
+        let haomiao = timeString.componentsSeparatedByString(".")[1].doubleValue
+        return (min * 60 + second + haomiao * 0.01)
+       
     }
 }
 
 
-
+extension String {
+    var doubleValue: Double {
+        return (self as NSString).doubleValue
+    }
+}
 
 extension UIImage {
     /**
